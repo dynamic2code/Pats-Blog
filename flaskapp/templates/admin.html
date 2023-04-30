@@ -8,13 +8,24 @@
     <style>
         .login{
             background-color: blue;
+            position: absolute;
+            display: block;
+            height: 90%;
+            width: 90%;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        #form_log{
+            display: block;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="login">
         <h1>log in here</h1>
-        <form action="/register" method="post">
+        <form id="form_log" action="/register" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
             
@@ -34,15 +45,15 @@
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="first_par">First Artical:</label><br>
-            <input type="text" id="first_par" name="first_par"><br>
-            <label for="second_par">Second Artical:</label><br>
-            <input type="text" id="second_par" name="second_par"><br>
-            <label for="third_par">Third Artical:</label><br>
-            <input type="text" id="third_par" name="third_par"><br>
-            <label for="fourth_par">Fourth Artical:</label><br>
-            <input type="text" id="fourth_par" name="fourth_par"><br>
+            <textarea type="text" id="first_par" name="first_par"></textarea><br>
+            <label class="input_article"for="second_par">Second Artical:</label><br>
+            <textarea type="text" id="second_par" name="second_par"></textarea><br>
+            <label class="input_article"for="third_par">Third Artical:</label><br>
+            <textarea type="text" id="third_par" name="third_par"></textarea><br>
+            <label class="input_article" for="fourth_par">Fourth Artical:</label><br>
+            <textarea class="input_article" type="text" id="fourth_par" name="fourth_par"></textarea><br>
             <label for="fiveth_par">Fiveth Artical:</label><br>
-            <input type="text" id="fiveth_par" name="fiveth_par"><br>
+            <textarea class="input_article" type="text" id="fiveth_par" name="fiveth_par"></textarea><br>
             <input type="submit" value="submit">
         </form>
     </div>
