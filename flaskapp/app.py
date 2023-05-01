@@ -1,9 +1,17 @@
 from flask import Flask
+from flask import render_template, request, redirect
+
 import requests
 import sqlite3
 
 app = Flask(__name__)
-def auth():
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/admin/addBlog', methods=['POST'])
+def addBlog():
     name = request.form['name']
     email = request.form['email']
     password = request.form['password']
@@ -27,7 +35,7 @@ def auth():
             if check_for_password:
                 cursor.close()
                 conn.close()
-                return True
+                return render_template('addBlog.html')
         else:
             cursor.close()
             conn.close()
@@ -38,15 +46,9 @@ def auth():
         return "There are no registered name same as the name you enterd"
 
 
-
-@app.route('/admin')
-def admin():
-    return 'Hello, World!'
-
 @app.route('/')
 def userView():
-    
-    return 'Hello, World!'
+    return render_template('userView.html')
 
 if __name__ == "__main__":
     app.run()
