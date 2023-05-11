@@ -18,7 +18,7 @@
     <!-- the adding a blog part-->
     <div class="input_part">
         <h2>Add your blog here pat part by part as shown</h2>
-        <form>
+        <form action="{{ url_for('saveBlog') }}" method="post">
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="first_par">First Artical:</label><br>
@@ -31,6 +31,13 @@
             <textarea class="input_article" type="text" id="fourth_par" name="fourth_par"></textarea><br>
             <label for="fiveth_par">Fiveth Artical:</label><br>
             <textarea class="input_article" type="text" id="fiveth_par" name="fiveth_par"></textarea><br>
+            <label for="author">Author:</label><br>
+            <textarea class="input_article" type="text" id="author" name="author"></textarea><br>
+            <label for="image">Image 1:</label><br>
+            <input type="file" name="Image1"><br>
+            <label for="image">Image 2:</label><br>
+            <input type="file" name="Image2"><br>
+
             <input type="submit" value="submit">
         </form>
     </div>
