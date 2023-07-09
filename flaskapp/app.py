@@ -70,6 +70,11 @@ def saveBlog():
     cursor = conn.cursor()
 
     query = f"INSERT INTO blogs '{date}', '{heading}', '{first_par}', '{second_par}', '{third_par}', '{forth_par}', '{fivth_par}' '{image1}', '{image2}', '{author}'"
+    cursor.execute(query)
+    cursor.close()
+    conn.close()
+
+
 @app.route('/')
 def userView():
     return render_template('userView.html')

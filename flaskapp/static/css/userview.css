@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(247, 236, 236);
+}
+.top{
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    height: 40%;
+    backdrop-filter: blur(10px);
+    
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .left_div {
+    background-color: rgb(247, 236, 236);
+    flex: 0 0 15%;
+    max-width: 15%;
+    z-index: 10;
+    padding: 20px;
+    /* border-radius: 20px; */
+    backdrop-filter: blur(10px);
+  }
+  
+  
+  .center_div {
+    background-color: rgb(255, 255, 255);
+    flex: 0 0 70%;
+    max-width: 65%;
+    
+  }
+  
+  
+  .right_div {
+    background-color: rgb(247, 236, 236);
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; /* Adjust the height as needed */
+  }
+  
+  .about,
+  .contact {
+    flex: 1;
+    height: 100%;
+    padding: 10px;
+  }
+  
+  .about {
+    text-align: left;
+    flex: 1;
+    height: 100%;
+    border-right: 2px solid black;
+    padding: 10px;
+  }
+  
+  .contact {
+    text-align: right;
+  }
+
+  .mail_list{
+    display: none;
+  }
