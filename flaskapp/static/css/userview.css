@@ -1,40 +1,76 @@
 body{
-    background-color: rgb(247, 236, 236);
-}
-.top{
     background-color: rgb(255, 255, 255);
-    position: sticky;
-    height: 40%;
-    backdrop-filter: blur(10px);
-    
+    font-family: 'Roboto', sans-serif;
 }
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+  height: 40%;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+}
+
+menu {
+  display: flex;
+}
+
+menuitem {
+  padding: 10px;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  margin: 0;
+}
+
+.searchbar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .content {
     display: flex;
     justify-content: space-between;
     height: 100%;
   }
   
-  .left_div {
+  /* .left_div {
     background-color: rgb(247, 236, 236);
     flex: 0 0 15%;
     max-width: 15%;
     z-index: 10;
     padding: 20px;
-    /* border-radius: 20px; */
+    /* border-radius: 20px; 
     backdrop-filter: blur(10px);
   }
-  
+   */
   
   .center_div {
     background-color: rgb(255, 255, 255);
-    flex: 0 0 70%;
+    flex: 0 0 85%;
     max-width: 65%;
     
   }
   
   
   .right_div {
-    background-color: rgb(247, 236, 236);
+    background-color: rgb(255, 255, 255);
     flex: 0 0 15%;
     max-width: 15%;
   }

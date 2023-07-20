@@ -6,39 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>law blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userview.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <div class="top">
+        <div>
+          <h1>Pats Blog</h1>  
+        </div>
         <menu>
             <menuitem label="Option 1"><a href="">Home</a></menuitem>
             <menuitem label="Option 2"><a href="">About</a></menuitem>
             <menuitem label="Option 3"><a href="">Contact</a></menuitem>
         </menu>
-        <h1>Pats Blog</h1>
+
+        
         <div class="searchbar">
             <form action="" method="post">
                 <label for="inputField">Search for an article:</label>
                 <input type="search" name="" id="">
             </form>
         </div>
-        <button class="button">Join maillisst</button>
+        <button class="button" id="mail_list">Join mail lists</button>
     </div>
+    <hr>
     <br>
     <div class="content">
-        <div class="left_div">
+        <!-- <div class="left_div">
             <li>
-                <!-- the list of past blogs will point to a function which will get the blog and render the page -->
-                <!-- %for recent ....function to get recent blogs -->
+                 the list of past blogs will point to a function which will get the blog and render the page -->
+                <!-- %for recent ....function to get recent blogs 
                 <a href="">sub heading</a>
 
             </li>
-        </div>
+        </div> -->
         <br>
         <br>
         <div class="center_div">
             <article class="full_article">
-                <h1>Main heading</h1>
+                <center><h1 class="heading">Main heading</h1></center>
                 <article>
                     <p>Dear Hiring Team,
 
@@ -61,17 +67,18 @@
 
         </div>            
         <div class="right_div">
-            <p>this is where adverts come </p>
+            <p> </p>
         </div>
     </div>
     <br>
     <br>
     <footer>
         <div class="about">
-            <h3>about</h3>
+            <center><h3 class="heading">About</h3></center> 
+            <p>Dear Hiring Team, I am writing to express my interest in the backend developer position. With a strong background in </p>
         </div>
         <div class="contact">
-            <h3>Contact</h3>
+            <center><h3 class="heading">Contact</h3></center>
             
         </div>
     </footer>

@@ -77,7 +77,19 @@ def saveBlog():
 
 @app.route('/')
 def userView():
-    return render_template('userView.html')
+    # Connect to the database
+    conn = sqlite3.connect('blogs.db')
+    cursor = conn.cursor()
+    latest_blog = f"SELECT * FROM blogs ORDER BY date DESC LIMIT 1;"
+    cursor.execute(latest_blog)
+    cursor.close()
+    conn.close()
+
+    return render_template('userView.html', blog= latest_blog)
+
+@app.route('/search_results')
+def search():
+    pass
 
 if __name__ == "__main__":
     app.run()
