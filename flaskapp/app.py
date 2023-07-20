@@ -87,9 +87,17 @@ def userView():
 
     return render_template('userView.html', blog= latest_blog)
 
-@app.route('/search_results')
+@app.route('/search', methods=['GET', 'POST'])
 def search():
-    pass
+    name = request.form['name']
+    conn = sqlite3.connect('blogs.db')
+    cursor = conn.cursor()
+    search_blog = f""
+    cursor.execute(search_blog)
+    cursor.close()
+    conn.close()
+
+    return render_template('userView.html',blog = search_blog )
 
 if __name__ == "__main__":
     app.run()
