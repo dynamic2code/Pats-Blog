@@ -5,41 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admins</title>
-    <style>
-
-        #form_log{
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userview.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <!-- Include TinyMCE from CDN -->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+        <script>
+            // Initialize TinyMCE when the DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                tinymce.init({
+                    selector: '#myTextarea', // Replace this textarea with the TinyMCE editor
+                    height: 400,
+                    plugins: 'advlist autolink lists link image charmap print preview anchor',
+                    toolbar: 'undo redo | bold italic underline | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+                });
+            });
+        </script>
 </head>
 <body>
     <!-- the adding a blog part-->
     <div class="input_part">
-        <h2>Add your blog here pat part by part as shown</h2>
-        <form action="{{ url_for('saveBlog') }}" method="post">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title"><br>
-            <label for="first_par">First Artical:</label><br>
-            <textarea type="text" id="first_par" name="first_par"></textarea><br>
-            <label class="input_article"for="second_par">Second Artical:</label><br>
-            <textarea type="text" id="second_par" name="second_par"></textarea><br>
-            <label class="input_article"for="third_par">Third Artical:</label><br>
-            <textarea type="text" id="third_par" name="third_par"></textarea><br>
-            <label class="input_article" for="fourth_par">Fourth Artical:</label><br>
-            <textarea class="input_article" type="text" id="fourth_par" name="fourth_par"></textarea><br>
-            <label for="fiveth_par">Fiveth Artical:</label><br>
-            <textarea class="input_article" type="text" id="fiveth_par" name="fiveth_par"></textarea><br>
-            <label for="author">Author:</label><br>
-            <textarea class="input_article" type="text" id="author" name="author"></textarea><br>
-            <label for="image">Image 1:</label><br>
-            <input type="file" name="Image1"><br>
-            <label for="image">Image 2:</label><br>
-            <input type="file" name="Image2"><br>
-
-            <input type="submit" value="submit">
+        <center><h2>Add your blog here pat part by part as shown</h2></center>
+        <form action="/admin/addBlog/saveBlog" method="post">
+            <textarea id="myTextarea" name="blog" style="width: 100%;"></textarea>
+            <br>
+            <center><button class="saveButton">Save Content</button></center>
         </form>
+        
     </div>
 </body>
 </html>

@@ -49,27 +49,16 @@ def addBlog():
 @app.route('/admin/addBlog/saveBlog', methods=['POST'])
 def saveBlog():
     date = datetime.datetime.now()
-    heading = request.form['heading']
-    first_par = request.form['first_par']
-    second_par = request.form['second_par']
-    third_par = request.form['third_par']
-    forth_par = request.form['forth_par']
-    fivth_par = request.form['fivth_par']
-    image1  = request.files['image1'].filename
-    image2  = request.files['image2'].filename
-    author = request.form['author']
-    file_content = request.files['image1']
-    file_content2 = request.files['image2']
-
-    file_content.save("uploads/" + image1)
-    file_content2.save("uploads/" + image2)
+    blog = request.form['blog']
+ 
     # Connect to the database
     conn = sqlite3.connect('blogs.db')
 
     # Create a cursor object
     cursor = conn.cursor()
+    print(date)
 
-    query = f"INSERT INTO blogs '{date}', '{heading}', '{first_par}', '{second_par}', '{third_par}', '{forth_par}', '{fivth_par}' '{image1}', '{image2}', '{author}'"
+    query = f"INSERT INTO blogs (date, blog) VALUES ({date}, {blog})"
     cursor.execute(query)
     cursor.close()
     conn.close()
@@ -100,4 +89,5 @@ def search():
     return render_template('userView.html',blog = search_blog )
 
 if __name__ == "__main__":
-    app.run()
+    # app.run()
+    app.run(debug=True)

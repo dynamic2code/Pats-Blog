@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+}
+.saveButton{
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
