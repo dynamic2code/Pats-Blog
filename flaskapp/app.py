@@ -52,27 +52,35 @@ def saveBlog():
     date = datetime.now().date()
     blog = request.form['blog']
  
-    # Connect to the database
-    conn = sqlite3.connect('blogs.db')
+    try:
+        # Connect to the database
+        conn = sqlite3.connect('blogs.db')
 
-    # Create a cursor object
-    cursor = conn.cursor()
+        # Create a cursor object
+        cursor = conn.cursor()
 
-    print(blog)
-    cursor.execute("INSERT INTO blogs (date, blog) VALUES (?, ?)", (date, blog))
-    cursor.close()
-    conn.close()
+        cursor.execute("INSERT INTO blogs (date, blog) VALUES (?, ?)", (date, blog))
+        conn.commit()
 
-    flash('Blog saved successfully!', 'success')
+        cursor.close()
+        conn.close()
+
+        flash('Blog saved successfully!', 'success')
+    except sqlite3.Error as e:
+        # Handle the error, log it, or print it
+        print("Error:", e)
+        flash('Error occurred while saving the blog.', 'error')
+
     return render_template('addBlog.html')
 
 @app.route('/')
 def userView():
     # Connect to the database
     conn = sqlite3.connect('blogs.db')
-    cursor = conn.cursor()
-    latest_blog = f"SELECT * FROM blogs ORDER BY date DESC LIMIT 1;"
-    cursor.execute(latest_blog)
+    cursor = conn.cursor() 
+    cursor.execute("SELECT blog FROM blogs ORDER BY id DESC LIMIT 1;")
+    latest = cursor.fetchall()
+    latest_blog = latest[0][0]
     cursor.close()
     conn.close()
 

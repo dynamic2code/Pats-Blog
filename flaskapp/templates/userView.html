@@ -11,9 +11,11 @@
 </head>
 <body>
     <div class="top">
-        <div>
-          <h1>Pats Blog</h1>  
+        <div id="topbar">
+          <h1>Pats Blog</h1> 
+            <img id="menue_bar" src="{{ url_for('static', filename='img/menu-button-of-three-horizontal-lines.png') }}" alt="menu"> 
         </div>
+       
         <menu>
             <menuitem label="Option 1"><a href="">Home</a></menuitem>
             <menuitem label="Option 2"><a href="">About</a></menuitem>
@@ -43,35 +45,15 @@
         <br>
         <br>
         <div class="center_div">
-            <article class="full_article">
-                <center><h1 class="heading">Main heading</h1></center>
-                <article>
-                    <p>Dear Hiring Team,
-
-                        I am writing to express my interest in the backend developer position. With a strong background in backend frameworks (Laravel, Django, and Flask), databases, APIs, and front-end frameworks (Vue), I bring extensive experience and expertise in developing robust and efficient software solutions. I possess a deep understanding of the data flow from the front end to the database, ensuring smooth workflow and collaboration in team projects.
-                        
-                        Throughout my four-year journey, I have gained valuable insights into hardware and software components and their development. I hold a BSc. in Computer Science from Chuka University, graduating with a second class upper division. During my attachment at Dev Lab Africa, I worked under supervision to develop a car hire web app using Laravel and food delivery mobile apps using the Ionic framework. This experience provided me with valuable knowledge about the software life cycle and the dynamics of working in a team.
-                        
-                        In addition to my professional experiences, I have also been involved in developing my startup, Dynamic Lab. Here, I continuously work on developing a freelancer work web app with Django and Flask, as well as music apps with Kotlin and Jetpack Compose. These projects have honed my problem-solving skills, sparked innovation, and enhanced my debugging capabilities. Working on diverse projects has made me well-versed in frameworks such as MVC, MVT, and MVVM. Furthermore, I have developed a high level of agility in adapting to new requirements with speed and efficiency.
-                        
-                        I am excited about the opportunity to contribute my skills and expertise to your team. I am confident that my strong technical skills, dedication to clean and reusable code, and ability to collaborate effectively will make me a valuable asset to your organization.
-                        
-                        Thank you for considering my application. I look forward to the opportunity to discuss how my qualifications align with your requirements.
-                        
-                        Sincerely,
-                        [Your Name]</p>
-                    <!-- <h2 class="sub_heading">{{sub_heading}}</h2>
-                    <p class="article_content">{{article_content}}</p> -->
-                </article>
-            </article>
-
+            {{ blog | safe }}
         </div>            
         <div class="right_div">
-            <p> </p>
+            
         </div>
     </div>
     <br>
     <br>
+    <hr>
     <footer>
         <div class="about">
             <center><h3 class="heading">About</h3></center> 

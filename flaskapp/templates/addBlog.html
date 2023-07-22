@@ -22,6 +22,15 @@
         </script>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <!-- the adding a blog part-->
     <div class="input_part">
         <center><h2>Add your blog here pat part by part as shown</h2></center>
