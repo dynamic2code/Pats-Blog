@@ -35,19 +35,20 @@
         </div>
         <button class="button" id="mail_list">Join mail lists</button>
     </div>
+    <br> 
+    <h3>Past Articles</h3>
+    <div class="resent_list">    
+    {% for title in titles %}
+        <div class="resent">
+          {{ title }}
+        </div>
+    {% endfor %}
+    </div>
     <br>
 </div>
     <hr>
     <br>
     <div class="content">
-        <!-- <div class="left_div">
-            <li>
-                 the list of past blogs will point to a function which will get the blog and render the page -->
-                <!-- %for recent ....function to get recent blogs 
-                <a href="">sub heading</a>
-
-            </li>
-        </div> -->
         <br>
         <br>
         <div class="center_div">

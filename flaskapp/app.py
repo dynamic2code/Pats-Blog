@@ -51,6 +51,7 @@ def addBlog():
 def saveBlog():
     date = datetime.now().date()
     blog = request.form['blog']
+    title = request.form['title']
  
     try:
         # Connect to the database
@@ -59,13 +60,14 @@ def saveBlog():
         # Create a cursor object
         cursor = conn.cursor()
 
-        cursor.execute("INSERT INTO blogs (date, blog) VALUES (?, ?)", (date, blog))
+        cursor.execute("INSERT INTO blogs (date, blog, title) VALUES (?, ?, ?)", (date, blog, title))
         conn.commit()
 
         cursor.close()
         conn.close()
 
         flash('Blog saved successfully!', 'success')
+
     except sqlite3.Error as e:
         # Handle the error, log it, or print it
         print("Error:", e)
@@ -81,10 +83,16 @@ def userView():
     cursor.execute("SELECT blog FROM blogs ORDER BY id DESC LIMIT 1;")
     latest = cursor.fetchall()
     latest_blog = latest[0][0]
+    cursor.execute("SELECT title FROM blogs LIMIT 10;")
+    titles_b= cursor.fetchall()
+    titles = [title[0] for title in titles_b if title[0] is not None]
+    print(titles)
     cursor.close()
     conn.close()
 
-    return render_template('userView.html', blog= latest_blog)
+    
+
+    return render_template('userView.html', blog= latest_blog, titles= titles)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -96,7 +104,7 @@ def search():
     cursor.close()
     conn.close()
 
-    return render_template('userView.html',blog = search_blog )
+    return render_template('userView.html',blog = search_blog, )
 
 if __name__ == "__main__":
     # app.run()

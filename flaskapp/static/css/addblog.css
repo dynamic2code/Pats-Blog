@@ -1,6 +1,7 @@
 body{
     background-color: rgb(255, 255, 255);
     font-family: 'Roboto', sans-serif;
+    color: black;
 }
 .saveButton{
     border-radius: 20px;
@@ -10,3 +11,14 @@ body{
     border: none;
     cursor: pointer;
 }
+input[type="text"] {
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #4E5764;
+    color: #ffffff; /* Add a text color for better visibility */
+    width: 300px; /* Add a width to the input for demonstration */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }

@@ -1,13 +1,95 @@
+    /* Customize the vertical scrollbar for webkit-based browsers (Chrome, Safari) */
+    ::-webkit-scrollbar {
+      width: 20%; /* Set the width of the scrollbar */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #475159; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #475159; /* Color of the scrollbar thumb on hover */
+    }
+
+    /* Customize the horizontal scrollbar for webkit-based browsers (Chrome, Safari) */
+    ::-webkit-scrollbar-horizontal {
+      height: 12px; /* Set the height of the scrollbar */
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+      background-color: #475159; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover:horizontal {
+      background-color: #475159; /* Color of the scrollbar thumb on hover */
+    }
+
 body{
-    background-color:#E8EDEF;
-    font-family: 'Roboto', sans-serif;
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+  background-color:#E8EDEF;
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+}
+
+.head {
+  margin: 0; /* Remove margin for the .head container */
+}
+
+.menu {
+  margin: 0; /* Remove margin for the .menu container */
+}
+
+menu {
+  margin: 0; /* Remove margin for the <menu> element */
+}
+
+menuitem {
+  margin: 0; /* Remove margin for the <menuitem> element */
+}
+
+.top {
+  margin: 0; /* Remove margin for the .top container */
+}
+
+#topbar {
+  margin: 0; /* Remove margin for the #topbar container */
+  padding: 0; /* Remove padding for the #topbar container */
+}
+
+h1 {
+  margin: 0; /* Remove margin for the <h1> element */
+}
+
+#menu_bar {
+  margin: 0; /* Remove margin for the #menu_bar image */
+}
+
+.searchbar {
+  margin: 0; /* Remove margin for the .searchbar container */
+}
+
+.searchbar form {
+  margin: 0; /* Remove margin for the form element within .searchbar */
+}
+
+input[type="search"] {
+  margin: 0; /* Remove margin for the search input */
+}
+
+.button {
+  margin: 0; /* Remove margin for the .button element */
 }
 .head{
+  margin: 0;
   background-color: #475159;
+  padding: 0%;
 }
 .menu{
-  position: sticky;
-  height: 20%;
+  /* position: sticky;
+  height: 20%; */
   background-color: #475159;
 }
 .top {
@@ -58,6 +140,7 @@ h1 {
 }
 
 button {
+  margin: 1%;
   border-radius: 20px;
   padding: 10px 20px;
   background-color: black;
@@ -65,7 +148,26 @@ button {
   border: none;
   cursor: pointer;
 }
+.resent_list {
+  background-color: #475159;
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling when content exceeds the width */
+  white-space: nowrap; /* Prevent .resent divs from wrapping to the next line */
+  width: 100%; /* Set a fixed width for the .resent_list div */
+}
 
+.resent {
+  margin: 1%;
+  width: 20%; /* Set a constant width for the .resent divs */
+  min-width: 150px; /* Add a minimum width to ensure enough space for content */
+  height: 30px;
+  border-radius: 20px;
+  background-color: #4E5764;
+  color: #ffffff; /* Add text color for visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .content {
     display: flex;
     justify-content: space-between;
@@ -89,6 +191,7 @@ button {
     background-color: #E8EDEF;
     flex: 0 0 85%;
     max-width: 65%;
+    color: black;
     
   }
   
@@ -99,9 +202,13 @@ button {
   }
   .about{
     background-color: #475159;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
   }
   .contact{
     background-color: #E8EDEF;
+    color: black;
   }
   .mail_list{
     display: none;
@@ -123,5 +230,18 @@ button {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .resent_list {
+    /* Change the display to a vertical layout for small screens */
+    flex-direction: row;
+    align-items: stretch; /* Stretch .resent divs to fill the container */
+    overflow-x: auto; /* Enable horizontal scrolling when content exceeds the width */
+    white-space: nowrap; /* Prevent .resent divs from wrapping to the next line */
+    width: 100%;
+  }
+
+  .resent {
+    width: 100%; /* Make the .resent divs take the full width on small screens */
   }
 }
