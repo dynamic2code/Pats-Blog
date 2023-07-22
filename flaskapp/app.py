@@ -105,6 +105,26 @@ def search():
     conn.close()
 
     return render_template('userView.html',blog = search_blog, )
+@app.route('/add',methods=['GET', 'POST'] )
+def add(action):
+        # Perform the desired action based on the 'action' parameter
+    # Replace the following lines with your actual actions
+    if action == 'comment':
+        # Code for the comment action
+        pass
+    elif action == 'heart':
+        # Code for the heart action
+        pass
+    elif action == 'dislike':
+        # Code for the dislike action
+        pass
+    elif action == 'share':
+        # Code for the share action
+        pass
+
+    # Return a response (this will be sent back to the JavaScript AJAX call)
+    return({'message': f'Action "{action}" performed successfully'})
+
 
 if __name__ == "__main__":
     # app.run()

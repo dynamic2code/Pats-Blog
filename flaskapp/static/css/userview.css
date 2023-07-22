@@ -111,8 +111,7 @@ input[type="search"] {
   background-color: #4E5764;
 }
 
-#menue_bar{
-  display: none;
+.menue_bar{
   width: 30px; /* Adjust the width as needed */
   height: auto; /* Maintain the aspect ratio */
   margin-right: 10px;
@@ -174,17 +173,6 @@ button {
     height: 100%;
   }
   
-  /* .left_div {
-    background-color: rgb(247, 236, 236);
-    flex: 0 0 15%;
-    max-width: 15%;
-    z-index: 10;
-    padding: 20px;
-    /* border-radius: 20px; 
-    backdrop-filter: blur(10px);
-  }
-   */
-  
   .center_div {
     overflow: auto;
     text-overflow: ellipsis;
@@ -194,7 +182,12 @@ button {
     color: black;
     
   }
-  
+
+  .interact p,
+  .interact img {
+      display: inline-block; /* or use "display: inline;" */
+      vertical-align: middle; /* This property helps align images and paragraphs vertically */
+  }
   .right_div {
     background-color: #E8EDEF;
     flex: 0 0 15%;
@@ -210,9 +203,30 @@ button {
     background-color: #E8EDEF;
     color: black;
   }
-  .mail_list{
-    display: none;
-  }
+
+  .pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    z-index: 9999; /* Adjust this value if needed to control the stacking order */
+}
+.close-button {
+  display: block;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: #f44336;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+}
   /* CSS for smaller screens */
 @media (max-width: 768px) {
   div {

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>law blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userview.css') }}">
+    <script src="{{ url_for('static', filename='js/userview.js') }}"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
@@ -25,7 +26,7 @@
  
         <div id="topbar">
           <h1>Pats Blog</h1> 
-            <img id="menue_bar" src="{{ url_for('static', filename='img/menu-button-of-three-horizontal-lines.png') }}" alt="menu"> 
+            
         </div>
         
         <div class="searchbar">
@@ -53,6 +54,19 @@
         <br>
         <div class="center_div">
             {{ blog | safe }}
+            <div class="interact">
+                <p>1</p>
+                <img class="menue_bar" id="add_comment" src="{{ url_for('static', filename='img/comment.png') }}" alt="comment">
+                <p>1</p>
+                <img class="menue_bar" id="heart" src="{{ url_for('static', filename='img/heart.png') }}" alt="heart">
+                <p>1</p>
+                <img class="menue_bar" id="dislike" src="{{ url_for('static', filename='img/dislike.png') }}" alt="dislike">
+
+                <img class="menue_bar" id="share" src="{{ url_for('static', filename='img/share.png') }}" alt="share">
+            </div>
+            <div class="comments">
+
+            </div>
         </div>            
         <div class="right_div">
             
@@ -72,13 +86,26 @@
         </div>
     </footer>
 
-    <div class="mail_list">
+    <div class="pop_up" id="pop_up1" style="display: none;">
         <form action="" method="post">
-            <label for="name">Enter your name</label>
-            <input type="text" name="name" id="">
-            <label for="email">Enter your email:</label>
-            <input type="email" name="email" id="">
+            <input type="text" name="name" id="" placeholder="Enter your name">
+            <input type="email" name="email" id="" placeholder="Enter your email">
+            <br>
+            <br>
+            <center><button class="button">Join</button></center>
         </form>
+        <button class="close-button" onclick="togglePopUp('pop_up1')">Close</button>
     </div>
+    
+    <div class="pop_up" id="pop_up2" style="display: none;">
+        <form action="comment" method="post">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <br>
+            <br>
+            <center><button class="button">post</button></center>
+        </form>
+        <button class="close-button" onclick="togglePopUp('pop_up2')">Close</button>
+    </div>
+    
 </body>
 </html>
