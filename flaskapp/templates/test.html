@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gradient Examples</title>
+  <style>
+    /* Linear Gradient */
+    .gradient-box {
+      width: 300px;
+      height: 200px;
+      background-image: linear-gradient(to bottom, #ff0000, #00ff00);
+    }
+
+    /* Radial Gradient */
+    .gradient-circle {
+      width: 200px;
+      height: 200px;
+      background-image: radial-gradient(circle, #ff0000, #00ff00);
+    }
+
+    /* Linear Gradient with Multiple Color Stops */
+    .gradient-multiple {
+      width: 300px;
+      height: 200px;
+      background-image: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+    }
+    body {
+        width: 300px;
+  height: 300px;
+  background-image: repeating-linear-gradient(45deg, #000000, #000000 10px, #ffffff 10px, #ffffff 20px);
+
+}
+/* Example: Boxes with different patterns using repeating linear gradients */
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(45deg, #000000, #000000 10px, #ffffff 10px, #ffffff 20px);
+}
+
+.dots {
+  background-image: repeating-radial-gradient(circle, #000000, #000000 5px, #ffffff 5px, #ffffff 10px);
+}
+
+.checkerboard {
+  background-image: repeating-linear-gradient(0deg, #000000 0, #000000 25%, transparent 25%, transparent 50%, #000000 50%, #000000 75%, transparent 75%, transparent 100%);
+  background-size: 20px 20px;
+}
+
+  </style>
+</head>
+<body>
+    <div class="box stripes"></div>
+    <div class="box dots"></div>
+    <div class="box checkerboard"></div>
+</body>
+</html>
