@@ -1,11 +1,12 @@
 from flask import Flask
-from flask import render_template, request, redirect
-import datetime
+from flask import render_template, request, redirect,flash,url_for
+from datetime import datetime
 
 import requests
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key' 
 
 @app.route('/admin')
 def admin():
@@ -40,15 +41,15 @@ def addBlog():
         else:
             cursor.close()
             conn.close()
-            return "The email you entered is incorect"
+            return "The email you entered is incorrect"
     else:
         cursor.close()
         conn.close()
-        return "There are no registered name same as the name you enterd"
+        return "There are no registered name same as the name you entered"
     
 @app.route('/admin/addBlog/saveBlog', methods=['POST'])
 def saveBlog():
-    date = datetime.datetime.now()
+    date = datetime.now().date()
     blog = request.form['blog']
  
     # Connect to the database
@@ -56,13 +57,14 @@ def saveBlog():
 
     # Create a cursor object
     cursor = conn.cursor()
-    print(date)
 
-    query = f"INSERT INTO blogs (date, blog) VALUES ({date}, {blog})"
-    cursor.execute(query)
+    print(blog)
+    cursor.execute("INSERT INTO blogs (date, blog) VALUES (?, ?)", (date, blog))
     cursor.close()
     conn.close()
 
+    flash('Blog saved successfully!', 'success')
+    return render_template('addBlog.html')
 
 @app.route('/')
 def userView():
