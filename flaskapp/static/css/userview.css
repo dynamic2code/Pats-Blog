@@ -227,6 +227,10 @@ button {
   border: none;
   border-radius: 4px;
 }
+    /* Show the pop-up when the checkbox is checked */
+    #comment_toggle:checked ~ #pop_up2 {
+      display: block;
+  }
   /* CSS for smaller screens */
 @media (max-width: 768px) {
   div {
