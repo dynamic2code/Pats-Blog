@@ -82,7 +82,8 @@
         <div class="right_div">
             {% for comment in comments %}
                 <div class="comment">
-                    {{ comment }}
+                    <img class="menue_bar" src="{{ url_for('static', filename='img/user.png') }}" alt="user">
+                    <p>{{ comment }}</p>
                 </div>
             {% endfor %} 
         </div>
@@ -94,11 +95,17 @@
     <footer>
         <div class="about">
             <center><h3 class="heading">About</h3></center> 
-            <p>Dear Hiring Team, I am writing to express my interest in the backend developer position. With a strong background in </p>
+            <p>Welcome to "Insights in Law," a dynamic and comprehensive legal blog that delves into the intricacies of the legal world. Our mission is to empower readers with a deeper understanding of the law, ensuring they are well-informed and equipped to navigate legal challenges confidently. Through thought-provoking articles, expert analysis, and real-world case studies, we aim to enlighten both legal professionals and curious individuals alike.
+
+                At "Insights in Law," we pride ourselves on delivering meticulously researched and engaging content. Our team of seasoned legal experts and industry specialists bring a wealth of knowledge to the table, covering a broad spectrum of legal topics. Whether you seek insights into landmark court decisions, updates on legislative changes, or simply wish to explore the fascinating realm of law, our blog is your one-stop destination for all things legal. Join us on this enriching journey as we unravel the complexities of law and provide you with valuable perspectives to navigate the ever-evolving legal landscape.</p>
         </div>
         <div class="contact">
             <center><h3 class="heading">Contact</h3></center>
-            
+            <div>
+                <a href=""><img class="menue_bar" src="{{ url_for('static', filename='img/phone-call.png') }}" alt="call"></a>
+                <a href=""></a><img class="menue_bar" src="{{ url_for('static', filename='img/email.png') }}" alt="email"></a></a>
+                <a href=""><img class="menue_bar" src="{{ url_for('static', filename='img/twitter.png') }}" alt="twitter"></a>    
+            </div>
         </div>
     </footer>
 
