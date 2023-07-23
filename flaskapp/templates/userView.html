@@ -34,7 +34,8 @@
                 <input type="search" name="name" id="" placeholder="search for an article">
             </form>
         </div>
-        <button class="button" id="mail_list">Join mail lists</button>
+        <button class="button" id="mail_list" onclick="togglePopUp('pop_up1')">Join mail lists</button>
+
     </div>
     <br> 
     <h3>Past Articles</h3>
@@ -55,23 +56,37 @@
         <div class="center_div">
             {{ blog | safe }}
             <div class="interact">
-                <p>1</p>
-                <img class="menue_bar" id="add_comment" src="{{ url_for('static', filename='img/comment.png') }}" alt="comment">
-                <p>1</p>
-                <img class="menue_bar" id="heart" src="{{ url_for('static', filename='img/heart.png') }}" alt="heart">
-                <p>1</p>
-                <img class="menue_bar" id="dislike" src="{{ url_for('static', filename='img/dislike.png') }}" alt="dislike">
+                <p>{{comments_n}}</p>
+                <button class="plain-button" onclick="togglePopUp('pop_up2')">
+                    <img class="menue_bar" id="add_comment" src="{{ url_for('static', filename='img/comment.png') }}" alt="comment">
+                </button>
+                
+                
+                <p>{{hearts}}</p>
+                <button class="plain-button"  >
+                    <img class="menue_bar" id="heart" src="{{ url_for('static', filename='img/heart.png') }}" alt="heart">
+                </button> 
+
+                
+                <p>{{dislike}}</p>
+                <button class="plain-button" > 
+                    <img class="menue_bar" id="dislike" src="{{ url_for('static', filename='img/dislike.png') }}" alt="dislike">
+                </button>
+
+                
 
                 <img class="menue_bar" id="share" src="{{ url_for('static', filename='img/share.png') }}" alt="share">
             </div>
-            
-            <div class="comments">
-
-            </div>
-        </div>            
+        </div>  
+         
         <div class="right_div">
-            
+            {% for comment in comments %}
+                <div class="comment">
+                    {{ comment }}
+                </div>
+            {% endfor %} 
         </div>
+        <br>
     </div>
     <br>
     <br>
@@ -99,14 +114,21 @@
     </div>
     
     <div class="pop_up" id="pop_up2" style="display: none;">
-        <form action="comment" method="post">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+        <form action="/add_comment" method="post">
+            <input type="hidden" name="blog_id" value="{{last_id}}">
+            <textarea name="comment" id="" cols="30" rows="10" placeholder="add comment"></textarea>
             <br>
             <br>
             <center><button class="button">post</button></center>
         </form>
         <button class="close-button" onclick="togglePopUp('pop_up2')">Close</button>
     </div>
-    
+    <footer style="color: black;">
+        <a href="https://josephwakahu.vercel.app/"><center><p>&copy;<span id="current-year"></span> Dynamic Lab, Inc.</p></center></a>
+    </footer>
+    <script>
+        var currentYear = new Date().getFullYear();
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 </html>

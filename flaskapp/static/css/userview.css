@@ -50,15 +50,6 @@ menuitem {
   margin: 0; /* Remove margin for the <menuitem> element */
 }
 
-.top {
-  margin: 0; /* Remove margin for the .top container */
-}
-
-#topbar {
-  margin: 0; /* Remove margin for the #topbar container */
-  padding: 0; /* Remove padding for the #topbar container */
-}
-
 h1 {
   margin: 0; /* Remove margin for the <h1> element */
 }
@@ -79,9 +70,6 @@ input[type="search"] {
   margin: 0; /* Remove margin for the search input */
 }
 
-.button {
-  margin: 0; /* Remove margin for the .button element */
-}
 .head{
   margin: 0;
   background-color: #475159;
@@ -138,7 +126,7 @@ h1 {
   justify-content: center;
 }
 
-button {
+.button {
   margin: 1%;
   border-radius: 20px;
   padding: 10px 20px;
@@ -178,7 +166,7 @@ button {
     text-overflow: ellipsis;
     background-color: #E8EDEF;
     flex: 0 0 85%;
-    max-width: 65%;
+    max-width: 60%;
     color: black;
     
   }
@@ -190,8 +178,15 @@ button {
   }
   .right_div {
     background-color: #E8EDEF;
-    flex: 0 0 15%;
-    max-width: 15%;
+    flex: 0 0 35%;
+    max-width: 27%;
+    margin: 2%;
+  }
+  .comment{
+    color: black;
+    border: 2px solid #ccc;
+    padding: 5%;
+    margin: 1%;
   }
   .about{
     background-color: #475159;
@@ -227,10 +222,12 @@ button {
   border: none;
   border-radius: 4px;
 }
-    /* Show the pop-up when the checkbox is checked */
-    #comment_toggle:checked ~ #pop_up2 {
-      display: block;
-  }
+.plain-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
   /* CSS for smaller screens */
 @media (max-width: 768px) {
   div {
