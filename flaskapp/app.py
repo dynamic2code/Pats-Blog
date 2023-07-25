@@ -69,6 +69,10 @@ def saveBlog():
 
     return render_template('addBlog.html')
 
+@app.route('/error')
+def error():
+    return render_template('error.html')
+
 @app.route('/')
 def userView():  
     # Connect to the database
@@ -83,19 +87,19 @@ def userView():
     latest = cursor.fetchall()
     latest_blog = latest[0][0]
     
-    cursor.execute("SELECT title FROM blogs LIMIT 10;")
+    cursor.execute("SELECT title FROM blogs WHERE id < ? ORDER BY id DESC LIMIT 10;", (last_id,))
     titles_b= cursor.fetchall()
     titles = [title[0] for title in titles_b if title[0] is not None]
     
-    cursor.execute("SELECT comments FROM blogs;")
+    cursor.execute("SELECT comments FROM blogs WHERE id = ?", (last_id,))
     comments_n = cursor.fetchall()
     comments_n = comments_n[0][0]
     
-    cursor.execute("SELECT hearts FROM blogs;")
+    cursor.execute("SELECT hearts FROM blogs WHERE id = ?", (last_id,))
     hearts_n = cursor.fetchall()
     hearts = hearts_n[0][0]
     
-    cursor.execute("SELECT dislike FROM blogs;")
+    cursor.execute("SELECT dislike FROM blogs WHERE id = ?", (last_id,))
     dislike_n = cursor.fetchall()
     dislike = dislike_n[0][0]
     
@@ -103,6 +107,9 @@ def userView():
     comments_b = cursor.fetchall()
     comments = [comment[0] for comment in comments_b if comment[0] is not None]
     
+
+   
+
     print(titles)
     cursor.close()
     conn.close()
@@ -113,15 +120,60 @@ def userView():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    name = request.form['name']
+    if request.method == 'GET':
+        # Get the title from the query parameters for a GET request
+        title = request.args.get('name')
+    elif request.method == 'POST':
+        # Get the title from the submitted form for a POST request
+        title = request.form['name']
+
     conn = sqlite3.connect('blogs.db')
     cursor = conn.cursor()
-    search_blog = f""
-    cursor.execute(search_blog)
+    
+    # Use a SQL query to search for the blog with the given title
+    search_blog = f"SELECT blog FROM blogs WHERE title = ?"
+    cursor.execute(search_blog, (title,))
+    blog_n = cursor.fetchall()  # Assuming the query will return only one row for the blog
+    blog = blog_n[0][0]
+
+    # getting the blogs id
+    cursor.execute("SELECT id FROM blogs WHERE title = ?", (title,))
+    id_b = cursor.fetchall()
+    id = id_b[0][0]
+
+    # getting the titles of ten blogs
+    cursor.execute("SELECT title FROM blogs WHERE id < ? ORDER BY id DESC LIMIT 10;", (id,))
+    titles_b= cursor.fetchall()
+    titles = [title[0] for title in titles_b if title[0] is not None]
+
+    cursor.execute("SELECT comments FROM blogs WHERE id = ?", (id,))
+    comments_n = cursor.fetchall()
+    comments_n = comments_n[0][0]
+
+    cursor.execute("SELECT hearts FROM blogs WHERE id = ?", (id,))
+    hearts_n = cursor.fetchall()
+    hearts = hearts_n[0][0]
+    
+    cursor.execute("SELECT dislike FROM blogs WHERE id = ?", (id,))
+    dislike_n = cursor.fetchall()
+    dislike = dislike_n[0][0]
+    
+    cursor.execute("SELECT comment FROM comments WHERE blog_id = ?", (id,))
+    comments_b = cursor.fetchall()
+    comments = [comment[0] for comment in comments_b if comment[0] is not None]
+
+    # cursor.execute("SELECT name FROM comments WHERE blog_id = ?", (id,))
+    # name = cursor.fetchall()
+    # name = name
+
+
+
     cursor.close()
     conn.close()
 
-    return render_template('userView.html',blog = search_blog, )
+    return render_template('userView.html', blog=blog, titles= titles, comments_n = comments_n, hearts = hearts, dislike= dislike, comments= comments, last_id = id)
+
+
 @app.route('/add_comment',methods=['GET', 'POST'] )
 def add_comment():
     try:
@@ -146,7 +198,37 @@ def add_comment():
         return redirect(url_for('userView'))
 
     except Exception as e:
-        return f"Error: {str(e)}"
+        return redirect(url_for('error'))
+    
+@app.route('/like_blog', methods=['POST'])
+def like_blog():
+    blog_id = request.form.get('blog_id')  # Get the blog ID from the request
+    user_ip = request.remote_addr  # Get the user's IP address (for demonstration purposes)
+    liked_users = likes_data.get(blog_id, {}).get('liked_users', set())
+
+    if user_ip not in liked_users:
+        # Increment like count and mark user as liked
+        likes_data[blog_id] = {
+            "likes": likes_data.get(blog_id, {}).get('likes', 0) + 1,
+            "liked_users": liked_users | {user_ip}
+        }
+    else:
+        # Decrement like count and remove user's like status
+        likes_data[blog_id] = {
+            "likes": likes_data.get(blog_id, {}).get('likes', 0) - 1,
+            "liked_users": liked_users - {user_ip}
+        }
+
+    return jsonify({"likes": likes_data.get(blog_id, {}).get('likes', 0)})
+
+
+@app.route('/mail_list',methods=['GET', 'POST'])
+def mail_list():
+    try:
+        return redirect(url_for('userView'))
+    except:
+        return redirect(url_for('error'))
+    
 
 
 if __name__ == "__main__":

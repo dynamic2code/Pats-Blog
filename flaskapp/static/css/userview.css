@@ -98,7 +98,6 @@ input[type="search"] {
   outline: none; /* Remove the default blue outline on focus */
   background-color: #4E5764;
 }
-
 .menue_bar{
   width: 30px; /* Adjust the width as needed */
   height: auto; /* Maintain the aspect ratio */
@@ -106,6 +105,9 @@ input[type="search"] {
 }
 menu {
   display: flex;
+  position: sticky;
+  justify-content: center;
+  align-items: center;
 }
 
 menuitem {
@@ -135,6 +137,13 @@ h1 {
   border: none;
   cursor: pointer;
 }
+.cut {
+  width: 70%;
+  height: 4px;
+  background-color: black;
+  border-radius: 10px; /* Set the border radius to half of the height to make it fully rounded */
+  margin: 10px 0;
+}
 .resent_list {
   background-color: #475159;
   display: flex;
@@ -161,14 +170,19 @@ h1 {
     justify-content: space-between;
     height: 100%;
   }
+  .comment p {
+    /* Apply text wrapping within the comment paragraph */
+    word-wrap: break-word;
+}
   
   .center_div {
     overflow: auto;
     text-overflow: ellipsis;
     background-color: #E8EDEF;
-    flex: 0 0 85%;
+    flex: 0 0 65%;
     max-width: 60%;
     color: black;
+    padding: 2%;
     
   }
 
@@ -179,8 +193,9 @@ h1 {
   }
   .right_div {
     background-color: #E8EDEF;
+    border: 1px solid #e4e4e4;
     flex: 0 0 35%;
-    max-width: 27%;
+    max-width: 30%;
     margin: 2%;
   }
   .comment{
@@ -192,13 +207,21 @@ h1 {
     background-color: #475159;
     align-items: center;
     justify-content: center;
-    padding: 10%;
+    padding: 5%;
   }
-  .contact{
+  .contact {
     background-color: #E8EDEF;
     color: black;
-  }
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    text-align: center; /* Center the content horizontally */
+}
 
+/* Add some margin between the images */
+.contact .menue_bar {
+    margin: 10px;
+}
   .pop_up {
     position: fixed;
     top: 50%;
@@ -213,12 +236,13 @@ h1 {
     z-index: 9999; /* Adjust this value if needed to control the stacking order */
 }
 .close-button {
+  border: none;
+  background-color: transparent;
   display: block;
-  margin: 10px auto;
+  margin: 1% auto;
   cursor: pointer;
-  background-color: #f44336;
-  color: #fff;
-  padding: 8px 16px;
+  color: #000000;
+  
   border: none;
   border-radius: 4px;
 }
@@ -228,23 +252,35 @@ h1 {
   padding: 0;
   margin: 0;
 }
+
+.pop_up{
+  background-color: #475159;
+
+}
+.input_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input[type="text"],
+input[type="email"] {
+  border-radius: 20px;
+  padding: 10px 15px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  border: 1px solid #ccc; /* Add a border for better visibility */
+  outline: none; /* Remove the default blue outline on focus */
+  background-color: #4E5764;
+  margin: 2%;
+}
+.input-row {
+  display: flex; /* Create a flex container */
+  align-items: center; /* Center elements vertically within the row */
+  gap: 10px; /* Add some spacing between the input and the button */
+}
   /* CSS for smaller screens */
 @media (max-width: 768px) {
   div {
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  /* .button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-  } */
-
-  .searchbar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
   .resent_list {
@@ -258,5 +294,17 @@ h1 {
 
   .resent {
     width: 100%; /* Make the .resent divs take the full width on small screens */
+  }
+  .center_div{
+    flex: 0 0 80%;
+    max-width: 100%;
+    padding: 2%;
+  }
+  .right_div {
+    background-color: #E8EDEF;
+    border: 1px solid #e4e4e4;
+    flex: 0 0 80%;
+    max-width: 100%; /* Set max-width to 100% to fit the screen width */
+    margin: 0%;
   }
 }

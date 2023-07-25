@@ -29,6 +29,7 @@ def create_db_tables():
     cursor.execute('''CREATE TABLE IF NOT EXISTS comments (
                         count INTEGER PRIMARY KEY AUTOINCREMENT,
                         blog_id INTEGER NOT NULL,
+                        name TEXT NOT NULL,
                         comment TEXT NOT NULL,
                         FOREIGN KEY (blog_id) REFERENCES blogs(id)
                     )''')
