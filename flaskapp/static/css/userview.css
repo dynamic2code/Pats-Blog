@@ -4,12 +4,12 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: #475159; /* Color of the scrollbar thumb */
+      background-color: #E8EDEF; /* Color of the scrollbar thumb */
       border-radius: 10px; /* Rounded corners for the thumb */
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background-color: #475159; /* Color of the scrollbar thumb on hover */
+      background-color: #E8EDEF; /* Color of the scrollbar thumb on hover */
     }
 
     /* Customize the horizontal scrollbar for webkit-based browsers (Chrome, Safari) */
@@ -18,12 +18,12 @@
     }
 
     ::-webkit-scrollbar-thumb:horizontal {
-      background-color: #475159; /* Color of the scrollbar thumb */
+      background-color: #E8EDEF; /* Color of the scrollbar thumb */
       border-radius: 10px; /* Rounded corners for the thumb */
     }
 
     ::-webkit-scrollbar-thumb:hover:horizontal {
-      background-color: #475159; /* Color of the scrollbar thumb on hover */
+      background-color:#E8EDEF; /* Color of the scrollbar thumb on hover */
     }
 
 body{
@@ -72,7 +72,7 @@ input[type="search"] {
 
 .head{
   margin: 0;
-  background-color: #475159;
+  background-color: #E8EDEF;
   padding: 0%;
 }
 .menu{
@@ -88,7 +88,7 @@ input[type="search"] {
   position: sticky;
   height: 40%;
   backdrop-filter: blur(10px);
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 input[type="search"] {
   border-radius: 20px;
@@ -145,7 +145,7 @@ h1 {
   margin: 10px 0;
 }
 .resent_list {
-  background-color: #475159;
+  background-color: #E8EDEF;
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling when content exceeds the width */
   white-space: nowrap; /* Prevent .resent divs from wrapping to the next line */

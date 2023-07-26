@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>law blog</title>
+    <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userview.css') }}">
     <script src="{{ url_for('static', filename='js/userview.js') }}"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -15,11 +15,10 @@
     <div class="menu">  
         <menu>
             <menuitem label="Option 1"><a href="/">Home</a></menuitem>
-            <menuitem label="Option 2"><a href="#about">About</a></menuitem>
+            <menuitem label="Option 2"><a href="/about">About</a></menuitem>
             <menuitem label="Option 3"><a href="#contact">Contact</a></menuitem>
         </menu>     
     </div>
-    <br>
     <div class="top">
  
         <div id="topbar">
@@ -29,31 +28,29 @@
         
         <div class="searchbar">
             <form action="/search" method="get">
-                <input type="search" name="name" id="" placeholder="search for an article">
+                <input type="search" name="name" id="" placeholder="search for an article" required>
             </form>
         </div>
         <button class="button" id="mail_list" onclick="togglePopUp('pop_up1')">Join mail lists</button>
 
     </div>
-    <br>
     <center><div class="cut"></div></center> 
-    <h3>Past Articles</h3>
+    <span style="color: black;"><strong>Past Articles</strong></span>
     <div class="resent_list">    
     {% for title in titles %}
         <div class="resent">
             <form action="/search" method="get">
                 <input type="hidden" name="name" value="{{title}}">
                 <button type="submit" class="plain-button">
-                    {{ title }}
+                    <h3 style="color: rgb(255, 255, 255);">{{ title }}</h3>
                 </button>
             </form>   
         </div>
     {% endfor %}
     </div>
-    <br>
+    
 </div>
     <hr>
-    <br>
     <div class="content">
         <br>
         <br>
@@ -66,14 +63,14 @@
                 </button>
                 
                 
-                <p>{{hearts}}</p>
-                <button class="plain-button" onclick="likeBlog('')" >
+                <p id="like-count">{{hearts}}</p>
+                <button class="plain-button" onclick="likeBlog()" >
                     <img class="menue_bar" id="heart" src="{{ url_for('static', filename='img/heart.png') }}" alt="heart">
                 </button> 
 
                 
-                <p>{{dislike}}</p>
-                <button class="plain-button" > 
+                <p id="dislike-count">{{dislike}}</p>
+                <button class="plain-button" onclick="dislikeBlog()"> 
                     <img class="menue_bar" id="dislike" src="{{ url_for('static', filename='img/dislike.png') }}" alt="dislike">
                 </button>
 
@@ -85,10 +82,10 @@
         </div>  
          
         <div class="right_div">
-            {% for comment in comments %}
+            {% for i in range(comments|length)  %}
                 <div class="comment">
-                    <img class="menue_bar" src="{{ url_for('static', filename='img/user.png') }}" alt="user"><span>{{name}}</span>
-                    <p>{{ comment }}</p>
+                    <img class="menue_bar" src="{{ url_for('static', filename='img/user.png') }}" alt="user"><strong>{{ names[i] }}</strong>:
+                    <p>{{ comments[i] }}</p>
                 </div>
             {% endfor %} 
         </div>
@@ -96,14 +93,7 @@
     </div>
     <br>
     <br>
-    <hr>
-   
-    <div class="about" id="about">
-        <center><h3 class="heading">About</h3></center> 
-        <p>Welcome to "Insights in Law," a dynamic and comprehensive legal blog that delves into the intricacies of the legal world. Our mission is to empower readers with a deeper understanding of the law, ensuring they are well-informed and equipped to navigate legal challenges confidently. Through thought-provoking articles, expert analysis, and real-world case studies, we aim to enlighten both legal professionals and curious individuals alike.
-
-            At "Insights in Law," we pride ourselves on delivering meticulously researched and engaging content. Our team of seasoned legal experts and industry specialists bring a wealth of knowledge to the table, covering a broad spectrum of legal topics. Whether you seek insights into landmark court decisions, updates on legislative changes, or simply wish to explore the fascinating realm of law, our blog is your one-stop destination for all things legal. Join us on this enriching journey as we unravel the complexities of law and provide you with valuable perspectives to navigate the ever-evolving legal landscape.</p>
-    </div>
+    <hr>   
     <div class="contact" id="contact">
         <center><h3 class="heading">Contact</h3></center>
         <a href="tel:+1234567890"><img class="menue_bar" src="{{ url_for('static', filename='img/phone-call.png') }}" alt="call"></a>
@@ -111,13 +101,12 @@
         <a href="https://twitter.com/patiwangechi"><img class="menue_bar" src="{{ url_for('static', filename='img/twitter.png') }}" alt="twitter"></a>    
     </div>
     
-
     <div class="pop_up" id="pop_up1" style="display: none;">
         <button class="close-button" onclick="togglePopUp('pop_up1')">Close</button>
         <form class="input_form" action="/mail_list" method="post">
-            <input type="text" name="name" id="" placeholder="Enter your name">
+            <input type="text" name="name" id="" placeholder="Enter your name" required>
             <br>
-            <input type="email" name="email" id="" placeholder="Enter your email">
+            <input type="email" name="email" id="" placeholder="Enter your email" required>
             <br>
             <br>
             <center><button class="button">Join</button></center>
@@ -128,9 +117,9 @@
         <button class="close-button" onclick="togglePopUp('pop_up2')">Close</button>
         <form class="input_form" action="/add_comment" method="post">
             <input type="hidden" name="blog_id" value="{{last_id}}">
-            <input type="text" name="name" placeholder=" Enter your user name">
+            <input type="text" name="name" placeholder=" Enter your user name" required>
             <br>
-            <input type="text" name="comment" placeholder="Add comment">
+            <input type="text" name="comment" placeholder="Add comment" required>
             <br>
             <br>
             <center><button class="button">post</button></center>
