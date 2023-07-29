@@ -1,2 +1,2 @@
 # Pats-Blog
-a blog cite with laravel
+a blog cite with flask

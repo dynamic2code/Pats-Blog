@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admins</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/addblog.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <!-- Include TinyMCE from CDN -->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+        <script>
+            // Initialize TinyMCE when the DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                tinymce.init({
+                    selector: '#myTextarea', // Replace this textarea with the TinyMCE editor
+                    height: 400,
+                    plugins: 'advlist autolink lists link image charmap print preview anchor',
+                    toolbar: 'undo redo | bold italic underline | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+                });
+            });
+        </script>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <!-- the adding a blog part-->
+    <div class="input_part">
+        <center><h2>Add your blog here pat part by part as shown</h2></center>
+        <form action="/admin/addBlog/saveBlog" method="post">
+            <center> <input  type="text" name="title" id="" placeholder=" Input the article's topic"></center>
+            <br>
+            <textarea id="myTextarea" name="blog" style="width: 100%;"></textarea>
+            <br>
+            <center><button class="saveButton">Save Content</button></center>
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userview.css') }}">
+    <script src="{{ url_for('static', filename='js/userview.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body> 
+<div class="head">     
+    <div class="menu">  
+        <menu>
+            <menuitem label="Option 1"><a href="/">Home</a></menuitem>
+            <menuitem label="Option 2"><a href="/about">About</a></menuitem>
+            <menuitem label="Option 3"><a href="#contact">Contact</a></menuitem>
+        </menu>     
+    </div>
+    <div class="top">
+ 
+        <div id="topbar">
+          <h1>Pats Blog</h1> 
+            
+        </div>
+        
+        <div class="searchbar">
+            <form action="/search" method="get">
+                <input type="search" name="name" id="" placeholder="search for an article" required>
+            </form>
+            
+        </div>
+        <button class="button" id="mail_list" onclick="togglePopUp('pop_up1')">Join mail lists</button>
+
+    </div>
+    <center><div class="cut"></div></center> 
+    <span style="color: black;"><strong>Past Articles</strong></span>
+    <div class="resent_list">    
+    {% for title in titles %}
+        <div class="resent">
+            <form action="/search" method="get">
+                <input type="hidden" name="name" value="{{title}}">
+                <button type="submit" class="plain-button">
+                    <h3 style="color: rgb(255, 255, 255);">{{ title }}</h3>
+                </button>
+            </form>   
+        </div>
+    {% endfor %}
+    </div>
+    
+</div>
+    <hr>
+    <div class="content">
+        <br>
+        <br>
+        <div class="center_div">
+            {{ blog | safe }}
+            <div class="interact">
+                <p>{{comments_n}}</p>
+                <button class="plain-button" onclick="togglePopUp('pop_up2')">
+                    <img class="menue_bar" id="add_comment" src="{{ url_for('static', filename='img/comment.png') }}" alt="comment">
+                </button>
+                
+                
+                <p id="like-count">{{hearts}}</p>
+                <button class="plain-button" onclick="likeBlog()" >
+                    <img class="menue_bar" id="heart" src="{{ url_for('static', filename='img/heart.png') }}" alt="heart">
+                </button> 
+
+                
+                <p id="dislike-count">{{dislike}}</p>
+                <button class="plain-button" onclick="dislikeBlog()"> 
+                    <img class="menue_bar" id="dislike" src="{{ url_for('static', filename='img/dislike.png') }}" alt="dislike">
+                </button>
+
+                <button class="plain-button" onclick="togglePopUp('pop_up3')">
+                    <img class="menue_bar" id="share" src="{{ url_for('static', filename='img/share.png') }}" alt="share">
+                </button>
+                
+            </div>
+        </div>  
+         
+        <div class="right_div">
+            {% for i in range(comments|length)  %}
+                <div class="comment">
+                    <img class="menue_bar" src="{{ url_for('static', filename='img/user.png') }}" alt="user"><strong>{{ names[i] }}</strong>:
+                    <p>{{ comments[i] }}</p>
+                </div>
+            {% endfor %} 
+        </div>
+        <br>
+    </div>
+    <br>
+    <br>
+    <hr>   
+    <div class="contact" id="contact">
+        <center><h3 class="heading">Contact</h3></center>
+        <a href="tel:+1234567890"><img class="menue_bar" src="{{ url_for('static', filename='img/phone-call.png') }}" alt="call"></a>
+        <a href="mailto:josephwakahu12@gmail.com"><img class="menue_bar" src="{{ url_for('static', filename='img/email.png') }}" alt="email"></a></a>
+        <a href="https://twitter.com/patiwangechi"><img class="menue_bar" src="{{ url_for('static', filename='img/twitter.png') }}" alt="twitter"></a>    
+    </div>
+    
+    <div class="pop_up" id="pop_up1" style="display: none;">
+        <button class="close-button" onclick="togglePopUp('pop_up1')">Close</button>
+        <form class="input_form" action="/mail_list" method="post">
+            <input type="text" name="name" id="" placeholder="Enter your name" required>
+            <br>
+            <input type="email" name="email" id="" placeholder="Enter your email" required>
+            <br>
+            <br>
+            <center><button class="button">Join</button></center>
+        </form>
+    </div>
+    
+    <div class="pop_up" id="pop_up2" style="display: none;">
+        <button class="close-button" onclick="togglePopUp('pop_up2')">Close</button>
+        <form class="input_form" action="/add_comment" method="post">
+            <input type="hidden" name="blog_id" value="{{last_id}}">
+            <input type="text" name="name" placeholder=" Enter your user name" required>
+            <br>
+            <input type="text" name="comment" placeholder="Add comment" required>
+            <br>
+            <br>
+            <center><button class="button">post</button></center>
+        </form>
+    </div>
+
+    <div class="pop_up" id="pop_up3" style="display: none; justify-content: center;">
+        <button class="close-button" onclick="togglePopUp('pop_up3')"><h4>Close</h4></button>
+        <div class="input-row">
+            <input type="text" name="link" id="currentURL" readonly>
+            <button class="plain-button">Copy</button>
+        </div>
+        <br>
+        <div>
+            <a href="https://wa.me/?text={{currentURL}}" target="_blank">
+                <img class="menue_bar" src="{{ url_for('static', filename='img/whatsapp.png') }}" alt="whatsapp">
+            </a>
+            <a href="https://twitter.com/intent/tweet?url={{currentURL}}" target="_blank">
+                <img class="menue_bar" src="{{ url_for('static', filename='img/twitter.png') }}" alt="twitter">
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?url={{currentURL}}" target="_blank">
+                <img class="menue_bar" src="{{ url_for('static', filename='img/linkedin.png') }}" alt="linkedin">
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{currentURL}}" target="_blank" rel="noopener noreferrer">
+                <img class="menue_bar" src="{{ url_for('static', filename='img/facebook.png') }}" alt="facebook">
+            </a>
+        </div>
+
+    </div>
+
+    <footer style="color: black;">
+        <a href="https://josephwakahu.vercel.app/"><center><p>&copy;<span id="current-year"></span> Dynamic Lab, Inc.</p></center></a>
+    </footer>
+    <script>
+        // Get the current URL
+        var currentURL = window.location.href;    
+        // Set the value of the input field to the current URL
+        document.getElementById("currentURL").value = currentURL;
+
+        var currentYear = new Date().getFullYear();
+        document.getElementById("current-year").textContent = currentYear;
+
+    </script>
+</body>
+</html>
